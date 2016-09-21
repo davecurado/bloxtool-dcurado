@@ -3,10 +3,10 @@ import sys
 
 
 def networkcontainer_process_cli(config, auth, opt):
-    if opt['--delimeter'] is None:
-        delimeter = " "
+    if opt['--delimiter'] is None:
+        delimiter = " "
     else:
-        delimeter = opt['--delimeter']
+        delimiter = opt['--delimiter']
 
     if opt['--format'] is None:
         o_format = "text"
@@ -17,7 +17,7 @@ def networkcontainer_process_cli(config, auth, opt):
         hostname=config.host,
         auth=auth,
         o_format=o_format,
-        delimeter=delimeter
+        delimiter=delimiter
     )
 
     if opt['create'] is True and not opt['option']:

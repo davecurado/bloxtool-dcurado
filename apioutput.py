@@ -18,7 +18,7 @@ class APIOutput(object):
         self,
         resp,
         o_format='text',
-        delimeter=" ",
+        delimiter=" ",
         translation_map=None,
         fields=None
     ):
@@ -33,7 +33,7 @@ class APIOutput(object):
         self.resp = resp
         self.api_data = resp.json()
         self.o_format = o_format
-        self.delimeter = delimeter
+        self.delimiter = delimiter
         self.translation_map = translation_map
         self.fields = fields
         self.formatted_text = ""
@@ -49,7 +49,7 @@ class APIOutput(object):
         formatted_text = self._get_formatted_text(
             self.o_format,
             api_data,
-            self.delimeter
+            self.delimiter
         )
         self.formatted_text = formatted_text
         return self.formatted_text
@@ -78,7 +78,7 @@ class APIOutput(object):
             has_error = True
         return has_error, error_text
 
-    def _build_string(self, entry, delimeter):
+    def _build_string(self, entry, delimiter):
         i_str = ""
         if self.fields is not None:
             f_keys = self.fields
@@ -92,40 +92,40 @@ class APIOutput(object):
             v = entry[k]
             if k == "extattrs":
                 for extattr in entry[k]:
-                    i_str += "{key}: {value}{delimeter}".format(
+                    i_str += "{key}: {value}{delimiter}".format(
                         key=extattr,
                         value=entry[k][extattr]['value'],
-                        delimeter=delimeter
+                        delimiter=delimiter
                     )
             else:
                 translated_key = self._translate_key(k)
-                i_str += "{key}: {value}{delimeter}".format(
+                i_str += "{key}: {value}{delimiter}".format(
                     key=translated_key,
                     value=v,
-                    delimeter=delimeter
+                    delimiter=delimiter
                 )
-        i_str = i_str.rstrip(delimeter)
+        i_str = i_str.rstrip(delimiter)
         if len(i_str) > 0:
             i_str += "\n"
         return i_str
 
-    def _format_list(self, api_data, delimeter=" "):
+    def _format_list(self, api_data, delimiter=" "):
         i_str = ""
         for entry in api_data:
-            i_str += self._build_string(entry, delimeter)
+            i_str += self._build_string(entry, delimiter)
         return i_str
 
-    def _format_string(self, api_data, delimeter):
-        i_str = self._build_string(api_data, delimeter)
+    def _format_string(self, api_data, delimiter):
+        i_str = self._build_string(api_data, delimiter)
         return i_str
 
-    def _get_formatted_text(self, o_format, api_data, delimeter):
+    def _get_formatted_text(self, o_format, api_data, delimiter):
         formatted_text = ""
         if o_format == 'text':
             if isinstance(api_data, list):
-                formatted_text = self._format_list(api_data, delimeter)
+                formatted_text = self._format_list(api_data, delimiter)
             else:
-                formatted_text = self._format_string(api_data, delimeter)
+                formatted_text = self._format_string(api_data, delimiter)
         elif o_format != 'text':
             if o_format == 'json':
                 formatted_text = json.dumps(api_data, indent=4)

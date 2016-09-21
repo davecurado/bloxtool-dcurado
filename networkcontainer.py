@@ -27,7 +27,7 @@ class NetworkContainer(BaseMixin):
         if should_return:
             return ret
         else:
-            print self.get_output(ret, self.o_format, self.delimeter)
+            print self.get_output(ret, self.o_format, self.delimiter)
 
     def create_option(self, network, option_name, option_value):
         net_obj = self.search_by_ipv4addr(network, should_return=True, network_url=True)
@@ -83,7 +83,7 @@ class NetworkContainer(BaseMixin):
             hostname=self.hostname,
             auth=self.auth
         )
-        print self.get_output(ret, self.o_format, self.delimeter)
+        print self.get_output(ret, self.o_format, self.delimiter)
 
     def search(self, name=None, site=None):
         if name is not None:
@@ -146,7 +146,7 @@ class NetworkContainer(BaseMixin):
                 network=network
             )
         else:
-            print self.get_output(ret, self.o_format, self.delimeter)
+            print self.get_output(ret, self.o_format, self.delimiter)
 
     def delete_networkcontainer(self, network):
         try:
@@ -191,6 +191,6 @@ class NetworkContainer(BaseMixin):
             hostname=self.hostname,
             auth=self.auth
         )
-        output = self.get_output(ret, self.o_format, self.delimeter)
+        output = self.get_output(ret, self.o_format, self.delimiter)
         if should_print is True:
             print output

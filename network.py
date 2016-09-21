@@ -25,7 +25,7 @@ class Network(BaseMixin):
         if should_return:
             return ret
         else:
-            print self.get_output(ret, self.o_format, self.delimeter)
+            print self.get_output(ret, self.o_format, self.delimiter)
 
 
     def list_networks(self, include_extattrs=False):
@@ -38,7 +38,7 @@ class Network(BaseMixin):
             hostname=self.hostname,
             auth=self.auth
         )
-        print self.get_output(ret, self.o_format, self.delimeter)
+        print self.get_output(ret, self.o_format, self.delimiter)
 
     def create_option(self, network, option_name, option_value):
         net_obj = self.search_by_ipv4addr(network, should_return=True)
@@ -127,7 +127,7 @@ class Network(BaseMixin):
             hostname=self.hostname,
             auth=self.auth
         )
-        print self.get_output(ret, self.o_format, self.delimeter)
+        print self.get_output(ret, self.o_format, self.delimiter)
 
     def search_by_name(self, name):
         url = 'network?comment~:=%s' % name
@@ -137,7 +137,7 @@ class Network(BaseMixin):
             hostname=self.hostname,
             auth=self.auth
         )
-        print self.get_output(ret, self.o_format, self.delimeter)
+        print self.get_output(ret, self.o_format, self.delimiter)
 
     def search_by_attribute_value(self, attribute, value, network=None):
         network_string = ""
@@ -151,7 +151,7 @@ class Network(BaseMixin):
             hostname=self.hostname,
             auth=self.auth
         )
-        print self.get_output(ret, self.o_format, self.delimeter)
+        print self.get_output(ret, self.o_format, self.delimiter)
 
     def search_by_site(self, site):
         url = 'network?*Site~:=%s' % site
@@ -161,7 +161,7 @@ class Network(BaseMixin):
             hostname=self.hostname,
             auth=self.auth
         )
-        print self.get_output(ret, self.o_format, self.delimeter)
+        print self.get_output(ret, self.o_format, self.delimiter)
 
     def search(self, name=None, site=None, attribute=None, value=None, network=None):
         if name is not None:
@@ -199,7 +199,7 @@ class Network(BaseMixin):
                 network=network
             )
         else:
-            print self.get_output(ret, self.o_format, self.delimeter)
+            print self.get_output(ret, self.o_format, self.delimiter)
 
     def fixedaddresses(self, network):
         url = 'fixedaddress?network~=%s' % network
@@ -215,7 +215,7 @@ class Network(BaseMixin):
             found_records_len = 0
         if len(ret.json()) == 0:
             print 'No Networks Found'
-        print self.get_output(ret, self.o_format, self.delimeter)
+        print self.get_output(ret, self.o_format, self.delimiter)
 
     def delete_network(self, network):
         try:
@@ -263,7 +263,7 @@ class Network(BaseMixin):
             hostname=self.hostname,
             auth=self.auth
         )
-        output = self.get_output(ret, self.o_format, self.delimeter)
+        output = self.get_output(ret, self.o_format, self.delimiter)
         # TODO: Print the object after a get range
         # Really should refactor this into it's own module
         if should_print is True:
@@ -289,6 +289,6 @@ class Network(BaseMixin):
             hostname=self.hostname,
             auth=self.auth
         )
-        output = self.get_output(ret, self.o_format, self.delimeter)
+        output = self.get_output(ret, self.o_format, self.delimiter)
         if should_print is True:
             print output

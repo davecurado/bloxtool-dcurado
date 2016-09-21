@@ -5,22 +5,22 @@ from apioutput import APIOutput
 
 
 class BaseMixin(object):
-    def __init__(self, hostname, auth, o_format="text", delimeter=" "):
+    def __init__(self, hostname, auth, o_format="text", delimiter=" "):
         self.hostname = hostname
         self.auth = auth
         self.o_format = o_format
-        self.delimeter = delimeter
+        self.delimiter = delimiter
         self.api_out = None
 
     def get_output(
         self,
         ret,
         o_format='text',
-        delimeter=" ",
+        delimiter=" ",
         should_return=False,
         parse_site=False
     ):
-        self.api_out = APIOutput(ret, o_format=o_format, delimeter=delimeter)
+        self.api_out = APIOutput(ret, o_format=o_format, delimiter=delimiter)
         has_error, error_text = self.api_out.process_resp()
         if has_error is True:
             print error_text

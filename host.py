@@ -14,7 +14,7 @@ class Host(BaseMixin):
             hostname=self.hostname,
             auth=self.auth
         )
-        print self.get_output(ret, self.o_format, self.delimeter)
+        print self.get_output(ret, self.o_format, self.delimiter)
 
     def create_host(
         self,
@@ -37,7 +37,7 @@ class Host(BaseMixin):
             auth=self.auth,
             data=data
         )
-        output = self.get_output(ret, self.o_format, self.delimeter)
+        output = self.get_output(ret, self.o_format, self.delimiter)
         if should_print is True:
             print "Fixed Address Successfully Created"
             print "name: {name} mac: {mac} ipv4addr: {ipv4addr}".format(
@@ -61,7 +61,7 @@ class Host(BaseMixin):
         print self.get_output(
             ret,
             o_format,
-            self.delimeter,
+            self.delimiter,
             should_return=False
         )
 
@@ -90,7 +90,7 @@ class Host(BaseMixin):
         )
         if should_return is True:
             return ret
-        print self.get_output(ret, self.o_format, self.delimeter)
+        print self.get_output(ret, self.o_format, self.delimiter)
 
     def create_option(
         self,
@@ -189,7 +189,7 @@ class Host(BaseMixin):
             auth=self.auth,
             data=data
         )
-        output = self.get_output(ret, self.o_format, self.delimeter)
+        output = self.get_output(ret, self.o_format, self.delimiter)
         if should_print is True:
             print "Fixed Address Successfully Created"
             print "name: {name} mac: {mac} ipv4addr: {ipv4addr}".format(
